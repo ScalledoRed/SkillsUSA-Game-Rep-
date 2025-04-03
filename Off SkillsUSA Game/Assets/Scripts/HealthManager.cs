@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
     public Image healthBar;
     public float healthAmount = 100f;
 
-    // Start is called before the first update
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -19,7 +20,7 @@ public class HealthManager : MonoBehaviour
     {
         if (healthAmount <= 0)
         {
-            Application.LoadLevel(Application.LoadLeavel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -43,7 +44,6 @@ public class HealthManager : MonoBehaviour
     {
         healthAmount += healingAmount;
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
-
         healthBar.fillAmount = healthAmount / 100f;
     }
 }
